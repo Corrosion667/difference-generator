@@ -3,6 +3,9 @@ name = "hexlet-code"
 version = "0.1.0"
 description = "This is a difference determinator - a program that determines the difference between two data structures."
 authors = ["Artem Nechai <lenikol95@mail.ru>"]
+packages = [
+  { include = "gendiff" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
