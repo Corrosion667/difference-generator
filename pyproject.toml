@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = "This is a difference determinator - a program that determines the difference between two data structures."
+authors = ["Artem Nechai <lenikol95@mail.ru>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.5.7"
+pytest = "^6.2.4"
+wemake-python-styleguide = "^0.15.3"
+pytest-cov = "^2.12.1"
+isort = "^5.9.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
