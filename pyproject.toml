@@ -6,6 +6,7 @@ authors = ["Artem Nechai <lenikol95@mail.ru>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+argparse = "^1.4.0"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.7"
