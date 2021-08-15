@@ -8,6 +8,9 @@ authors = ["Artem Nechai <lenikol95@mail.ru>"]
 python = "^3.8"
 argparse = "^1.4.0"
 
+[tool.poetry.scripts]
+gendiff = "gendiff.scripts.gendiff:main"
+
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.7"
 pytest = "^6.2.4"
