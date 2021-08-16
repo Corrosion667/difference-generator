@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""This script shows basic info about the progam: its usage and syntax."""
+"""This program determines the differences between two files."""
 import argparse
 
 
 def main():
-    """Show info for gendiff program."""
+    """Execute the diff generator."""
     parser = argparse.ArgumentParser(description='Generate diff')
     parser.add_argument('first_file', type=str)
     parser.add_argument('second_file', type=str)
