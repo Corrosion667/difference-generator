@@ -2,6 +2,8 @@
 """This program determines the differences between two files."""
 import argparse
 
+from gendiff.gendiff_engine import generate_diff
+
 
 def main():
     """Execute the diff generator."""
