@@ -12,8 +12,10 @@ def generate_diff(file_path1, file_path2):
     Returns:
         Differences between two files
     """
-    first_file = json.load(open(file_path1))
-    second_file = json.load(open(file_path2))
+    with open(file_path1) as first_file:
+        first_file = json.loads(first_file)
+    with open(file_path2) as second_file:
+        second_file = json.loads(second_file)
     difference = ['{']
     keys = sorted(first_file.keys() | second_file.keys())
     for key in keys:
