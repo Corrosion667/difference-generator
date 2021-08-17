@@ -1,6 +1,5 @@
 """The engine to run diff generator."""
 import json
-from itertools import chain
 
 
 def generate_diff(file_path1, file_path2):
@@ -16,7 +15,8 @@ def generate_diff(file_path1, file_path2):
     first_file = json.load(open(file_path1))
     second_file = json.load(open(file_path2))
     difference = ['{']
-    keys = list(set(chain(first_file.keys(), second_file.keys())))
+    keys = sorted(first_file.keys() | second_file.keys())
+    print(keys)
     for key in keys:
         if first_file.get(key) == second_file.get(key):
             difference.append('   {0}: {1}'.format(key, first_file.get(key)))
