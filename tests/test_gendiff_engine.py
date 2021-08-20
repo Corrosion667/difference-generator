@@ -1,6 +1,6 @@
 """This is a module to test gendiff program."""
 
-from fixtures.estimated_results import estimated_diff_json, estimated_diff_yaml
+from tests.fixtures.estimated_results import estimated_diff_json, estimated_diff_yaml
 from gendiff.gendiff_engine import generate_diff
 
 
