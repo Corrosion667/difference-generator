@@ -1,4 +1,4 @@
-"""This module contains result fixtures for tests."""
+"""This module contains result of json fixtures for tests."""
 
 estimated_difference_json = (
     '{\n   accept: true\n - boolean: true\n'
