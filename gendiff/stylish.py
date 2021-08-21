@@ -18,4 +18,4 @@ def stylished(diff):
             difference = difference + ' - {0}: {1}\n'.format(each[0], each[1])
         else:
             difference = difference + ' + {0}: {1}\n'.format(each[0], each[1])
-    return (difference + '}')
+    return '{0}}}'.format(difference)
