@@ -1,6 +1,6 @@
 """This module contains fixtures of results for tests."""
 
-estimated_diff_json = (
+estimated_difference_json = (
     '{\n   accept: true\n - boolean: true\n'
     + ' + boolean: false\n - check: null\n'
     + ' - follow: false\n   host: hexlet.io\n'
@@ -9,7 +9,7 @@ estimated_diff_json = (
 )
 
 
-estimated_diff_yaml = (
+estimated_difference_yaml = (
     '{\n   accept: true\n - boolean: true\n'
     + ' + boolean: false\n - check: null\n'
     + ' - follow: false\n   host: hexlet.io\n'
