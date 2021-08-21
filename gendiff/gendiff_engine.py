@@ -1,5 +1,5 @@
 """The engine to run diff generator."""
-import json
+from gendiff.parsing import parse
 
 
 def converted(python_value):
@@ -30,10 +30,7 @@ def generate_diff(file_path1, file_path2):
     Returns:
         Differences between two files
     """
-    with open(file_path1) as first_file:
-        first_file = json.load(first_file)
-    with open(file_path2) as second_file:
-        second_file = json.load(second_file)
+    (first_file, second_file) = parse(file_path1, file_path2)
     difference = ['{']
     keys = sorted(first_file.keys() | second_file.keys())
     for key in keys:
