@@ -33,4 +33,4 @@ def parse_files(file_path1, file_path2):
                 second_file = yaml.safe_load(second_file)
             return (first_file, second_file)
     else:
-        raise ValueError('unsupported format or combination of formats')
+        raise ValueError('Unsupported format or combination of formats')
