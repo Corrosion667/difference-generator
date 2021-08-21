@@ -11,3 +11,6 @@
 ## Asciinema demonstrations:
 Installing the whole package. Then launching **Gendiff** for two JSON files.
 [![asciicast](https://asciinema.org/a/pGDPAA50ZBFo46MyBhIZvIejW.svg)](https://asciinema.org/a/pGDPAA50ZBFo46MyBhIZvIejW)
+
+Launching **Gendiff** for two YAML files.
+[![asciicast](https://asciinema.org/a/6iRsV5E8hMk4tMzYUScoHhsoe.svg)](https://asciinema.org/a/6iRsV5E8hMk4tMzYUScoHhsoe)
