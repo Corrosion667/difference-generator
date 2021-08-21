@@ -10,7 +10,7 @@ def converted(python_value):
         python_value: input value to be examined and converted if necessary.
 
     Returns:
-        Value or converted value if it is True, False or None
+        Value or converted value if it is True, False or None.
     """
     if python_value is True:
         return 'true'
@@ -29,34 +29,30 @@ def generate_diff(file_path1, file_path2):
         file_path2: Path to the second file.
 
     Returns:
-        Differences between two files
+        Differences between two files.
     """
     (first_file, second_file) = parse_files(file_path1, file_path2)
-    print(first_file)
-    print(second_file)
-    difference = ['{']
+    difference = []
     keys = sorted(first_file.keys() | second_file.keys())
     for key in keys:
         if key in (first_file.keys() - second_file.keys()):
             difference.append(
-                ' - {0}: {1}'.format(key, converted(first_file.get(key))),
+                (key, converted(first_file.get(key)), 'first'),
             )
         elif key in (second_file.keys() - first_file.keys()):
             difference.append(
-                ' + {0}: {1}'.format(key, converted(second_file.get(key))),
+                (key, converted(second_file.get(key)), 'second'),
             )
         else:
             if first_file.get(key) == second_file.get(key):
-                difference.append('   {0}: {1}'.format(
-                    key, converted(first_file.get(key)),
-                ),
+                difference.append(
+                    (key, converted(first_file.get(key)), 'both'),
                 )
             else:
                 difference.append(
-                    ' - {0}: {1}'.format(key, converted(first_file.get(key))),
+                    (key, converted(first_file.get(key)), 'first'),
                 )
                 difference.append(
-                    ' + {0}: {1}'.format(key, converted(second_file.get(key))),
+                    (key, converted(second_file.get(key)), 'second'),
                 )
-    difference.append('}')
-    return '\n'.join(difference)
+    return difference
