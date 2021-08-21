@@ -5,7 +5,7 @@ import json
 import yaml
 
 
-def parse(file_path1, file_path2):
+def parse_files(file_path1, file_path2):
     """Check formats of files and read them.
 
     Args:

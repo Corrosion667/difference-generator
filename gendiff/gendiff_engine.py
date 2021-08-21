@@ -1,5 +1,6 @@
 """The engine to run diff generator."""
-from gendiff.parsing import parse
+
+from gendiff.parsing import parse_files
 
 
 def converted(python_value):
@@ -30,7 +31,7 @@ def generate_diff(file_path1, file_path2):
     Returns:
         Differences between two files
     """
-    (first_file, second_file) = parse(file_path1, file_path2)
+    (first_file, second_file) = parse_files(file_path1, file_path2)
     difference = ['{']
     keys = sorted(first_file.keys() | second_file.keys())
     for key in keys:
