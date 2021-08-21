@@ -32,6 +32,8 @@ def generate_diff(file_path1, file_path2):
         Differences between two files
     """
     (first_file, second_file) = parse_files(file_path1, file_path2)
+    print(first_file)
+    print(second_file)
     difference = ['{']
     keys = sorted(first_file.keys() | second_file.keys())
     for key in keys:
