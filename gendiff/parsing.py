@@ -19,7 +19,7 @@ def parse_files(file_path1, file_path2):
         ValueError: if format of file(s) is unsupported or
             trying to parse two files with unmatching formats.
     """
-    if file_path1.endswith('json') and file_path2.endwith('json'):
+    if file_path1.endswith('json') and file_path2.endswith('json'):
         with open(file_path1) as first_file:
             first_file = json.load(first_file)
         with open(file_path2) as second_file:
