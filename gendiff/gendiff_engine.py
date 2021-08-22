@@ -31,28 +31,25 @@ def generate_diff(file_path1, file_path2):
     Returns:
         Differences between two files.
     """
-    (first_file, second_file) = parse_files(file_path1, file_path2)
-    difference = []
-    keys = sorted(first_file.keys() | second_file.keys())
-    for key in keys:
-        if key in (first_file.keys() - second_file.keys()):
-            difference.append(
-                (key, converted(first_file.get(key)), 'first'),
+    (first_dict, second_dict) = parse_files(file_path1, file_path2)
+
+    def walk(first_dict, second_dict):
+        keys = sorted(first_dict.keys() | second_dict.keys())
+
+        def inner(key):
+            if key in (first_dict.keys() - second_dict.keys()):
+                return (key, converted(first_dict.get(key)), None)
+            elif key in (second_dict.keys() - first_dict.keys()):
+                return (key, None, converted(second_dict.get(key)))
+            elif isinstance(first_dict.get(key), dict):
+                if isinstance(second_dict.get(key), dict):
+                    new_first_dict = first_dict.get(key)
+                    new_second_dict = second_dict.get(key)
+                    return (key, walk(new_first_dict, new_second_dict))
+            return (
+                key,
+                converted(first_dict.get(key)),
+                converted(second_dict.get(key)),
             )
-        elif key in (second_file.keys() - first_file.keys()):
-            difference.append(
-                (key, converted(second_file.get(key)), 'second'),
-            )
-        else:
-            if first_file.get(key) == second_file.get(key):
-                difference.append(
-                    (key, converted(first_file.get(key)), 'both'),
-                )
-            else:
-                difference.append(
-                    (key, converted(first_file.get(key)), 'first'),
-                )
-                difference.append(
-                    (key, converted(second_file.get(key)), 'second'),
-                )
-    return difference
+        return list(map(inner, keys))
+    return walk(first_dict, second_dict)
