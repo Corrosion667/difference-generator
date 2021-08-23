@@ -15,6 +15,14 @@ def test_generate_diff_flat_json():
     )) == estimated_result_flat
 
 
+def test_generate_diff_nested_json():
+    """Basic test for flat json difference generator."""
+    assert stylished(generate_diff(
+        'tests/fixtures/test_files/nested_test_file1.json',
+        'tests/fixtures/test_files/nested_test_file2.json',
+    )) == estimated_result_flat
+
+
 def test_generate_diff_flat_yml():
     """Basic test for flat yaml difference generator."""
     assert stylished(generate_diff(
