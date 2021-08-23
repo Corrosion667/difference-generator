@@ -51,5 +51,5 @@ def generate_diff(file_path1, file_path2):
                 converted(first_dict.get(key)),
                 converted(second_dict.get(key)),
             )
-        return list(map(inner, keys))
+        return tuple(map(inner, keys))
     return walk(first_dict, second_dict)
