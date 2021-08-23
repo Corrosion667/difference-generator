@@ -3,32 +3,29 @@ import pytest
 from gendiff.gendiff_engine import generate_diff
 from gendiff.stylish import stylished
 
-with open('tests/fixtures/estimated_results/estimated_flat.txt') as result_file:
-    estimated_result_flat = result_file.read()
 
+def test_generate_diff_flat_json(get_flat_result):
+    """Basic test for flat json difference generator.
 
-def test_generate_diff_flat_json():
-    """Basic test for flat json difference generator."""
+    Args:
+        get_flat_result: Estimated result for flat diff.
+    """
     assert stylished(generate_diff(
         'tests/fixtures/test_files/flat_test_file1.json',
         'tests/fixtures/test_files/flat_test_file2.json',
-    )) == estimated_result_flat
+    )) == get_flat_result
 
 
-def test_generate_diff_nested_json():
-    """Basic test for flat json difference generator."""
-    assert stylished(generate_diff(
-        'tests/fixtures/test_files/nested_test_file1.json',
-        'tests/fixtures/test_files/nested_test_file2.json',
-    )) == estimated_result_flat
+def test_generate_diff_flat_yml(get_flat_result):
+    """Basic test for flat yaml difference generator.
 
-
-def test_generate_diff_flat_yml():
-    """Basic test for flat yaml difference generator."""
+    Args:
+        get_flat_result: Estimated result for flat diff.
+    """
     assert stylished(generate_diff(
         'tests/fixtures/test_files/flat_test_file1.yml',
         'tests/fixtures/test_files/flat_test_file2.yaml',
-    )) == estimated_result_flat
+    )) == get_flat_result
 
 
 def test_generate_diff_wrong_formats():
