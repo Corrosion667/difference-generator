@@ -1,5 +1,7 @@
 """The module with CLI formatters for diffs."""
 
+LEVEL_INDENT = '    '
+
 
 def format_dict(element, level):
     """Check wheteher an element of a diff is dict and format it.
@@ -19,16 +21,18 @@ def format_dict(element, level):
                 level += 1
                 difference = difference + \
                     '{0}{1}: {2}\n'.format(
-                        ('    ' * level), key, walk(element[key], '{\n', level))
+                        (LEVEL_INDENT * level),
+                        key, walk(element[key], '{\n', level),
+                    )
                 level -= 1
             else:
                 level += 1
                 difference = difference + \
                     '{0}{1}: {2}\n'.format(
-                        ('    ' * level), key, element[key])
+                        (LEVEL_INDENT * level), key, element[key],
+                    )
                 level -= 1
-        difference = difference + '{0}}}'.format(('    ' * level))
-        return difference
+        return difference + '{0}}}'.format((LEVEL_INDENT * level))
     if isinstance(element, dict):
         return walk(element, '{\n', level)
     return element
@@ -47,14 +51,14 @@ def stylished(diff):
         for each in sequence:
             if isinstance(each[1], tuple):
                 difference = difference + \
-                    '{0}    {1}: '.format(('    ' * level), each[0])
+                    '{0}    {1}: '.format((LEVEL_INDENT * level), each[0])
                 level += 1
                 difference = difference + \
                     '{0}\n'.format(walk(each[1], '{\n', level))
                 level -= 1
             elif isinstance(each[2], tuple):
                 difference = difference + \
-                    '{0}    {1}: '.format(('    ' * level), each[0])
+                    '{0}    {1}: '.format((LEVEL_INDENT * level), each[0])
                 level += 1
                 difference = difference + \
                     '{0}\n'.format(walk(each[2], '{\n', level))
@@ -62,31 +66,31 @@ def stylished(diff):
             elif each[1] == each[2]:
                 difference = difference + \
                     '{0}    {1}: {2}\n'.format(
-                        ('    ' * level), each[0], format_dict(each[1], level),
+                        (LEVEL_INDENT * level),
+                        each[0], format_dict(each[1], level),
                     )
             elif each[2] is None:
                 difference = difference + \
                     '{0}  - {1}: {2}\n'.format(
-                        ('    ' * level),
+                        (LEVEL_INDENT * level),
                         each[0], format_dict(each[1], level),
                     )
             elif each[1] is None:
                 difference = difference + \
                     '{0}  + {1}: {2}\n'.format(
-                        ('    ' * level),
+                        (LEVEL_INDENT * level),
                         each[0], format_dict(each[2], level),
                     )
             else:
                 difference = difference + \
                     '{0}  - {1}: {2}\n'.format(
-                        ('    ' * level),
+                        (LEVEL_INDENT * level),
                         each[0], format_dict(each[1], level),
                     )
                 difference = difference + \
                     '{0}  + {1}: {2}\n'.format(
-                        ('    ' * level),
+                        (LEVEL_INDENT * level),
                         each[0], format_dict(each[2], level),
                     )
-        difference = difference + '{0}}}'.format(('    ' * level))
-        return (difference)
+        return difference + '{0}}}'.format((LEVEL_INDENT * level))
     return walk(diff, '{\n', 0)
