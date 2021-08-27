@@ -1,6 +1,7 @@
 """The engine to run diff generator."""
 
 from gendiff.parsing import parse_files
+from gendiff.stylish import stylished
 
 
 def converted(python_value):
@@ -21,12 +22,13 @@ def converted(python_value):
     return python_value
 
 
-def generate_diff(file_path1, file_path2):
+def generate_diff(file_path1, file_path2, formatter=stylished):
     """Get differences between two files.
 
     Args:
         file_path1: Path to the first file.
         file_path2: Path to the second file.
+        formatter: Chosen style of diff CLI view.
 
     Returns:
         Differences between two files.
@@ -52,4 +54,4 @@ def generate_diff(file_path1, file_path2):
                 converted(second_dict.get(key)),
             )
         return tuple(map(inner, keys))
-    return walk(first_dict, second_dict)
+    return formatter(walk(first_dict, second_dict))
