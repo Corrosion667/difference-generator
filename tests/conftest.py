@@ -24,3 +24,15 @@ def get_nested_result_stylish():
     with open('tests/fixtures/results/nested_stylish.txt') as result_file:
         estimated_result_nested_stylish = result_file.read()
     return estimated_result_nested_stylish
+
+
+@pytest.fixture
+def get_flat_result_plain():
+    """Get fixture of estimated diff for testing flat files with plain formatter.
+
+    Returns:
+        Estimated result for flat diff with plain formatter.
+    """
+    with open('tests/fixtures/results/flat_plain.txt') as result_file:
+        estimated_result_flat_plain = result_file.read()
+    return estimated_result_flat_plain
