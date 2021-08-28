@@ -3,12 +3,6 @@
 import argparse
 
 from gendiff.gendiff_engine import generate_diff
-from gendiff.stylish import straight, stylished
-
-formatter_map = {
-    'stylished': stylished,
-    'straight': straight,
-}
 
 
 def main():
@@ -20,7 +14,7 @@ def main():
         '-f',
         '--format',
         type=str,
-        choices=formatter_map.keys(),
+        choices='stylished',
         default='stylished',
         help="""set format of output; default: stylished
          (json-like format with - for deleted elements and + for added)
@@ -30,7 +24,7 @@ def main():
     print(
         generate_diff
         (
-            args.first_file, args.second_file, formatter_map[args.format],
+            args.first_file, args.second_file, args.format,
         ),
     )
 

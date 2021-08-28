@@ -3,6 +3,8 @@
 from gendiff.parsing import parse_files
 from gendiff.stylish import stylished
 
+formatter_map = {'stylished': stylished}
+
 
 def converted(python_value):
     """Convert Python's bools and None to required format.
@@ -22,7 +24,7 @@ def converted(python_value):
     return python_value
 
 
-def generate_diff(file_path1, file_path2, formatter=stylished):
+def generate_diff(file_path1, file_path2, formatter='stylished'):
     """Get differences between two files.
 
     Args:
@@ -54,4 +56,4 @@ def generate_diff(file_path1, file_path2, formatter=stylished):
                 converted(second_dict.get(key)),
             )
         return tuple(map(inner, keys))
-    return formatter(walk(first_dict, second_dict))
+    return formatter_map[formatter](walk(first_dict, second_dict))
