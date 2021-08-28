@@ -1,7 +1,7 @@
 """The engine to run diff generator."""
 
 from gendiff.parsing import parse_files
-from gendiff.stylish import stylished
+from gendiff.formatters.stylish import stylished
 
 formatter_map = {'stylished': stylished}
 

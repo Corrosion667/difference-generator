@@ -1,4 +1,4 @@
-"""The module with CLI formatters for diffs."""
+"""Json-like formatter with - for deleted elements and + for added."""
 
 LEVEL_INDENT = '    '
 

@@ -4,7 +4,7 @@ from gendiff.gendiff_engine import generate_diff
 
 
 def test_generate_diff_flat_json(get_flat_result):
-    """Basic test for flat json difference generator with default formatter.
+    """Basic test for flat json difference generator with stylished formatter.
 
     Args:
         get_flat_result: Estimated result for flat diff.
@@ -16,7 +16,7 @@ def test_generate_diff_flat_json(get_flat_result):
 
 
 def test_generate_diff_nested_json(get_nested_result):
-    """Basic test for nested json difference generato with default formatter.
+    """Basic test for nested json difference generator with stylished formatter.
 
     Args:
         get_nested_result: Estimated result for nested diff.
@@ -28,7 +28,7 @@ def test_generate_diff_nested_json(get_nested_result):
 
 
 def test_generate_diff_flat_yml(get_flat_result):
-    """Basic test for flat yaml difference generator with default formatter.
+    """Basic test for flat yaml difference generator with stylished formatter.
 
     Args:
         get_flat_result: Estimated result for flat diff.
@@ -40,7 +40,7 @@ def test_generate_diff_flat_yml(get_flat_result):
 
 
 def test_generate_diff_nested_yml(get_nested_result):
-    """Basic test for nested yaml difference generator with default formatter.
+    """Basic test for nested yaml difference generator with stylished formatter.
 
     Args:
         get_nested_result: Estimated result for nested diff.
