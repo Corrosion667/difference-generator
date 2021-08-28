@@ -3,9 +3,12 @@
 import argparse
 
 from gendiff.gendiff_engine import generate_diff
-from gendiff.stylish import stylished
+from gendiff.stylish import straight, stylished
 
-formatter_map = {'stylished': stylished}
+formatter_map = {
+    'stylished': stylished,
+    'straight': straight,
+}
 
 
 def main():

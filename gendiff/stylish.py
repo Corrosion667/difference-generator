@@ -94,3 +94,7 @@ def stylished(diff):
                     )
         return difference + '{0}}}'.format((LEVEL_INDENT * level))
     return walk(diff, '{\n', 0)
+
+
+def straight(diff):
+    return diff
