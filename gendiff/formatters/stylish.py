@@ -1,4 +1,4 @@
-"""Json-like formatter with - for deleted elements and + for added."""
+"""Json-like format with - for deleted elements and + for added."""
 
 LEVEL_INDENT = '    '
 
