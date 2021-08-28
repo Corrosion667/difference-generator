@@ -14,9 +14,9 @@ def main():
         '-f',
         '--format',
         type=str,
-        choices='stylished',
-        default='stylished',
-        help="""set format of output; default: stylished
+        choices=['stylish', 'plain'],
+        default='stylish',
+        help="""set format of output; default: stylish
          (json-like format with - for deleted elements and + for added)
          """,
     )

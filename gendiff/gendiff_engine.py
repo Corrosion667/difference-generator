@@ -1,9 +1,13 @@
 """The engine to run diff generator."""
 
-from gendiff.parsing import parse_files
+from gendiff.formatters.plain import plained
 from gendiff.formatters.stylish import stylished
+from gendiff.parsing import parse_files
 
-formatter_map = {'stylished': stylished}
+formatter_map = {
+    'stylish': stylished,
+    'plain': plained,
+}
 
 
 def converted(python_value):
@@ -24,7 +28,7 @@ def converted(python_value):
     return python_value
 
 
-def generate_diff(file_path1, file_path2, formatter='stylished'):
+def generate_diff(file_path1, file_path2, formatter='stylish'):
     """Get differences between two files.
 
     Args:

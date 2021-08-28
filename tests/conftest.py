@@ -3,24 +3,24 @@ import pytest
 
 
 @pytest.fixture
-def get_flat_result():
-    """Get a fixture of estimated result for testing flat files.
+def get_flat_result_stylish():
+    """Get fixture of estimated diff for testing flat files with stylish formatter.
 
     Returns:
-        Estimated result for flat diff.
+        Estimated result for flat diff with stylish formatter.
     """
-    with open('tests/fixtures/estimated_results/flat.txt') as result_file:
-        estimated_result_flat = result_file.read()
-    return estimated_result_flat
+    with open('tests/fixtures/results/flat_stylish.txt') as result_file:
+        estimated_result_flat_stylish = result_file.read()
+    return estimated_result_flat_stylish
 
 
 @pytest.fixture
-def get_nested_result():
-    """Get a fixture of estimated result for testing nested files.
+def get_nested_result_stylish():
+    """Get fixture of estimated dif for testing nested files with stylish formatter.
 
     Returns:
-        Estimated result for nested diff.
+        Estimated result for nested diff with stylish formatter.
     """
-    with open('tests/fixtures/estimated_results/nested.txt') as result_file:
-        estimated_result_nested = result_file.read()
-    return estimated_result_nested
+    with open('tests/fixtures/results/nested_stylish.txt') as result_file:
+        estimated_result_nested_stylish = result_file.read()
+    return estimated_result_nested_stylish
