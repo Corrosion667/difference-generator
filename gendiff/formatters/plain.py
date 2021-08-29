@@ -30,21 +30,35 @@ def plained(diff):
     Returns:
         Difference formated into string with necessary syntax.
     """
-    difference = ''
-    for each in diff:
-        if each[1] == each[2]:
-            continue
-        elif each[2] is None:
-            difference = difference + \
-                "Property \'{0}\' was removed\n".format(each[0])
-        elif each[1] is None:
-            difference = difference + \
-                "Property \'{0}\' was added with value: {1}\n".format(
-                    each[0], formatted(each[2]),
-                )
-        else:
-            difference = difference + \
-                "Property \'{0}\' was updated. From {1} to {2}\n".format(
-                    each[0], formatted(each[1]), formatted(each[2]),
-                )
-    return difference
+
+    def walk(sequence, difference, level):
+        for each in sequence:
+            if isinstance(each[1], tuple):
+                level = level + '{0}.'.format(each[0])
+                check_len = len('{0}.'.format(each[0]))
+                difference = difference + \
+                    '{0}'.format(walk(each[1], '', level))
+                level = level[:-check_len]
+            elif isinstance(each[2], tuple):
+                level = level + '{0}.'.format(each[0])
+                check_len = len('{0}.'.format(each[0]))
+                difference = difference + \
+                    '{0}'.format(walk(each[2], '', level))
+                level = level[:-check_len]
+            elif each[1] == each[2]:
+                continue
+            elif each[2] is None:
+                difference = difference + \
+                    "Property \'{0}{1}\' was removed\n".format(level, each[0])
+            elif each[1] is None:
+                difference = difference + \
+                    "Property \'{0}{1}\' was added with value: {2}\n".format(
+                        level, each[0], formatted(each[2]),
+                    )
+            else:
+                difference = difference + \
+                    "Property \'{0}{1}\' was updated. From {2} to {3}\n".format(
+                        level, each[0], formatted(each[1]), formatted(each[2]),
+                    )
+        return difference
+    return walk(diff, '', '')[:-1]
