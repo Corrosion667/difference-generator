@@ -18,6 +18,8 @@ def main():
         default='stylish',
         help="""set format of output; default: stylish
          (json-like format with - for deleted elements and + for added)
+         also usable: plain
+         (thesis-like format with satements about adding, updating and removal)
          """,
     )
     args = parser.parse_args()
