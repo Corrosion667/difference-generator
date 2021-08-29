@@ -36,3 +36,15 @@ def get_flat_result_plain():
     with open('tests/fixtures/results/flat_plain.txt') as result_file:
         estimated_result_flat_plain = result_file.read()
     return estimated_result_flat_plain
+
+
+@pytest.fixture
+def get_nested_result_plain():
+    """Get fixture of estimated diff for testing nested files with plain formatter.
+
+    Returns:
+        Estimated result for nested diff with plain formatter.
+    """
+    with open('tests/fixtures/results/nested_plain.txt') as result_file:
+        estimated_result_nested_plain = result_file.read()
+    return estimated_result_nested_plain
