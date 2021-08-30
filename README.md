@@ -13,6 +13,12 @@
 Then made difference is being presented in one of three formats to choose from.
 Gendiff currently works with **JSON** and **YML/YAML** files.
 
+## Quickstart
+**Gendiff** at the moment are stored only at *github* so the quickest and the easiest way to install them is to use *pip* with URL of repository.
+```bash
+pip install git+HTTPS
+```
+
 
 ## Asciinema demonstrations:
 Installing the whole package. Then launching **Gendiff** for two flat JSON files.
