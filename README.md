@@ -8,6 +8,12 @@
 
 ---
 
+## Basic information
+**Difference generator** *(further - gendiff)* is a programm that determines the difference between two data structures.
+Then made difference is being presented in one of three formats to choose from.
+Gendiff currently works with **JSON** and **YML/YAML** files.
+
+
 ## Asciinema demonstrations:
 Installing the whole package. Then launching **Gendiff** for two flat JSON files.
 [![asciicast](https://asciinema.org/a/pGDPAA50ZBFo46MyBhIZvIejW.svg)](https://asciinema.org/a/pGDPAA50ZBFo46MyBhIZvIejW)
