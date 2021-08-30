@@ -1,5 +1,7 @@
 """The engine to run diff generator."""
 
+import json
+
 from gendiff.formatters.plain import plained
 from gendiff.formatters.stylish import stylished
 from gendiff.parsing import parse_files
@@ -7,6 +9,7 @@ from gendiff.parsing import parse_files
 formatter_map = {
     'stylish': stylished,
     'plain': plained,
+    'json': json.dumps,
 }
 
 

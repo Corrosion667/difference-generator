@@ -14,12 +14,14 @@ def main():
         '-f',
         '--format',
         type=str,
-        choices=['stylish', 'plain'],
+        choices=['stylish', 'plain', 'json'],
         default='stylish',
         help="""set format of output; default: stylish
-         (json-like format with - for deleted elements and + for added)
+         (json-like format with - for deleted elements and + for added);
          also usable: plain
-         (thesis-like format with satements about adding, updating and removal)
+         (thesis-like format with satements about adding, updating and removal);
+         also usable: json
+         (classic json: list of lists with [key, value_file1, value_file2])
          """,
     )
     args = parser.parse_args()
