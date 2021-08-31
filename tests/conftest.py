@@ -1,5 +1,4 @@
 """This is a module with fixtures for testing."""
-import json
 
 import pytest
 
