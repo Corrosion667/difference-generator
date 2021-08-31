@@ -59,8 +59,8 @@ def get_flat_result_json():
     Returns:
         Estimated result for flat diff with json formatter.
     """
-    with open('tests/fixtures/results/flat_json.json') as result_file:
-        estimated_result_flat_json = json.load(result_file)
+    with open('tests/fixtures/results/flat_json.txt') as result_file:
+        estimated_result_flat_json = result_file.read()
     return estimated_result_flat_json
 
 
@@ -71,6 +71,6 @@ def get_nested_result_json():
     Returns:
         Estimated result for nested diff with json formatter.
     """
-    with open('tests/fixtures/results/nested_json.json') as result_file:
-        estimated_result_nested_json = json.load(result_file)
-    return estimated_result_nested_json
+    with open('tests/fixtures/results/nested_json.txt') as result_file:
+        estimated_result_nested_json = result_file.read()
+    return format(estimated_result_nested_json)
