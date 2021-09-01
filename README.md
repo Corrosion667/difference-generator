@@ -9,18 +9,34 @@
 ---
 
 ## Basic information
+
 **Difference generator** *(further - gendiff)* is a programm that determines the difference between two data structures.
 Then made difference is being presented in one of three formats to choose from.
 Gendiff currently works with **JSON** and **YML/YAML** files.
 
+
 ## Quickstart
+
 **Gendiff** at the moment are stored only at *github* so the quickest and the easiest way to install them is to use *pip* with URL of repository.
 ```bash
 pip install git+HTTPS
 ```
 
+## Running
+
+Basic **Gendiff** syntax looks like this:
+```bash
+gendiff --format path/to/file1 path/to/file2
+```
+*format* is an optional argument. Its deafult value is *'stylish'*. But all three formatters will be described below.
+
+You can also recall about main features and syntax of a program using help command:
+```bash
+gendiff -h
+```
 
 ## Asciinema demonstrations:
+
 Installing the whole package. Then launching **Gendiff** for two flat JSON files.
 [![asciicast](https://asciinema.org/a/pGDPAA50ZBFo46MyBhIZvIejW.svg)](https://asciinema.org/a/pGDPAA50ZBFo46MyBhIZvIejW)
 
