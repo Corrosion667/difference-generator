@@ -1,6 +1,9 @@
 """Thesis-like format with satements about adding, updating and removal."""
 
 bools = ['true', 'false', 'null']
+REMOVED = "Property \'{0}{1}\' was removed\n"
+ADDED = "Property \'{0}{1}\' was added with value: {2}\n"
+UPDATED = "Property \'{0}{1}\' was updated. From {2} to {3}\n"
 
 
 def formatted(element):
@@ -36,29 +39,22 @@ def plained(diff):
             if isinstance(each[1], tuple):
                 level = level + '{0}.'.format(each[0])
                 check_len = len('{0}.'.format(each[0]))
-                difference = difference + \
-                    '{0}'.format(walk(each[1], '', level))
+                difference += '{0}'.format(walk(each[1], '', level))
                 level = level[:-check_len]
             elif isinstance(each[2], tuple):
                 level = level + '{0}.'.format(each[0])
                 check_len = len('{0}.'.format(each[0]))
-                difference = difference + \
-                    '{0}'.format(walk(each[2], '', level))
+                difference += '{0}'.format(walk(each[2], '', level))
                 level = level[:-check_len]
             elif each[1] == each[2]:
                 continue
             elif each[2] is None:
-                difference = difference + \
-                    "Property \'{0}{1}\' was removed\n".format(level, each[0])
+                difference += REMOVED.format(level, each[0])
             elif each[1] is None:
-                difference = difference + \
-                    "Property \'{0}{1}\' was added with value: {2}\n".format(
-                        level, each[0], formatted(each[2]),
-                    )
+                difference += ADDED.format(level, each[0], formatted(each[2]))
             else:
-                difference = difference + \
-                    "Property \'{0}{1}\' was updated. From {2} to {3}\n".format(
-                        level, each[0], formatted(each[1]), formatted(each[2]),
-                    )
+                difference += UPDATED.format(
+                    level, each[0], formatted(each[1]), formatted(each[2]),
+                )
         return difference
     return walk(diff, '', '')[:-1]
