@@ -30,10 +30,22 @@ gendiff --format path/to/file1 path/to/file2
 ```
 *format* is an optional argument. Its deafult value is *'stylish'*. But all three formatters will be described below.
 
-You can also recall about main features and syntax of a program using help command:
+You can also recall about main features and syntax of a program using *help command*:
 ```bash
 gendiff -h
 ```
+
+## Formatters
+
+As was said above, there are three formatters which gendiff currently supports:
+
+|   **Formatter**   |                                  **Description**                                  |
+|-------------------|-----------------------------------------------------------------------------------|
+|     *stylish*     | json-like format with '-' for deleted elements and '+' for added                  |       
+|      *plain*      | thesis-like format with satements about adding, updating and removal of elements  |      
+|      *json*       | classic json; list of lists with following syntax: [key, value_file1,value_file2] |
+
+The work of different formatters will be clearly demonstrated below using asciinema service.
 
 ## Asciinema demonstrations:
 
