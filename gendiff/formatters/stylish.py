@@ -50,6 +50,7 @@ def stylished(diff):
         Difference formated into string with necessary syntax.
     """
     def walk(sequence, difference, level):
+        sequence = sorted(sequence)
         for each in sequence:
             if isinstance(each[1], tuple):
                 difference += RECURSION_TEMPLATE.format(

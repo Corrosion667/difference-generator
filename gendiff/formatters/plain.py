@@ -35,6 +35,7 @@ def plained(diff):
     """
 
     def walk(sequence, difference, level):
+        sequence = sorted(sequence)
         for each in sequence:
             if isinstance(each[1], tuple):
                 level = level + '{0}.'.format(each[0])

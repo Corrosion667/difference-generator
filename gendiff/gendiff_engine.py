@@ -45,7 +45,7 @@ def generate_diff(file_path1, file_path2, formatter='stylish'):
     second_dict = parse_file(file_path2)
 
     def walk(first_dict, second_dict):
-        keys = sorted(first_dict.keys() | second_dict.keys())
+        keys = (first_dict.keys() | second_dict.keys())
 
         def inner(key):
             if key in (first_dict.keys() - second_dict.keys()):
