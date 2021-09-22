@@ -3,7 +3,7 @@
 from gendiff.formatters.json import jsoned
 from gendiff.formatters.plain import plained
 from gendiff.formatters.stylish import stylished
-from gendiff.parsing import parse_files
+from gendiff.parsing import parse_file
 
 formatter_map = {
     'stylish': stylished,
@@ -41,7 +41,8 @@ def generate_diff(file_path1, file_path2, formatter='stylish'):
     Returns:
         Differences between two files.
     """
-    (first_dict, second_dict) = parse_files(file_path1, file_path2)
+    first_dict = parse_file(file_path1)
+    second_dict = parse_file(file_path2)
 
     def walk(first_dict, second_dict):
         keys = sorted(first_dict.keys() | second_dict.keys())

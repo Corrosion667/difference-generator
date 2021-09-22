@@ -1,35 +1,32 @@
-"""The module for checking files format and reading them."""
+"""The module for checking file extension and reading it."""
 
 import json
+import os
 
 import yaml
 
+YAML_EXTENSIONS = ('.yaml', '.yml')
 
-def parse_files(file_path1, file_path2):
-    """Check formats of files and read them.
+
+def parse_file(file_path):
+    """Check extension of file and read it.
 
     Args:
-        file_path1: Path to the first file.
-        file_path2: Path to the second file.
+        file_path: Path to the file.
 
     Returns:
-        Parsed files.
+        Parsed file.
 
     Raises:
-        ValueError: if format of file(s) is unsupported or
-            trying to parse two files with unmatching formats.
+        ValueError: if extension of file is unsupported.
     """
-    if file_path1.endswith('json') and file_path2.endswith('json'):
-        with open(file_path1) as first_file:
-            first_file = json.load(first_file)
-        with open(file_path2) as second_file:
-            second_file = json.load(second_file)
-        return (first_file, second_file)
-    elif file_path1.endswith('yaml') or file_path1.endswith('yml'):
-        if file_path2.endswith('yaml') or file_path2.endswith('yml'):
-            with open(file_path1) as first_file:
-                first_file = yaml.safe_load(first_file)
-            with open(file_path2) as second_file:
-                second_file = yaml.safe_load(second_file)
-            return (first_file, second_file)
-    raise ValueError('Unsupported format or combination of formats')
+    file_extension = os.path.splitext(file_path)[-1].lower()
+    if file_extension == '.json':
+        with open(file_path) as parsed_file:
+            parsed_file = json.load(parsed_file)
+        return parsed_file
+    elif file_extension in YAML_EXTENSIONS:
+        with open(file_path) as parsed_file:
+            parsed_file = yaml.safe_load(parsed_file)
+        return parsed_file
+    raise ValueError('Unsupported extension of file')
