@@ -62,5 +62,5 @@ def generate_diff(file_path1, file_path2, formatter='stylish'):
                 converted(first_dict.get(key)),
                 converted(second_dict.get(key)),
             )
-        return tuple(map(inner, keys))
+        return list(map(inner, keys))
     return formatter_map[formatter](walk(first_dict, second_dict))
