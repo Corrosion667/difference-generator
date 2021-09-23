@@ -52,7 +52,7 @@ def stylished(diff):
     def walk(sequence, difference, level):
         sequence = sorted(sequence)
         for each in sequence:
-            if isinstance(each[1], tuple):
+            if isinstance(each[1], list):
                 difference += RECURSION_TEMPLATE.format(
                     (LEVEL_TAB * level), each[0],
                 )
@@ -61,7 +61,7 @@ def stylished(diff):
                     walk(each[1], '{\n', level),
                 )
                 level -= 1
-            elif isinstance(each[2], tuple):
+            elif isinstance(each[2], list):
                 difference += RECURSION_TEMPLATE.format(
                     (LEVEL_TAB * level), each[0],
                 )
