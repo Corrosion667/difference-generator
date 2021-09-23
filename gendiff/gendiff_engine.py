@@ -5,6 +5,11 @@ from gendiff.formatters.plain import plained
 from gendiff.formatters.stylish import stylished
 from gendiff.parsing import parse_file
 
+NESTED = 'nested'
+ADDED = 'added'
+KEPT = 'kept'
+REMOVED = 'removed'
+
 formatter_map = {
     'stylish': stylished,
     'plain': plained,
@@ -49,16 +54,17 @@ def generate_diff(file_path1, file_path2, formatter='stylish'):
 
         def inner(key):
             if key in (first_dict.keys() - second_dict.keys()):
-                return (key, converted(first_dict.get(key)), None)
+                return (key, REMOVED, converted(first_dict.get(key)))
             elif key in (second_dict.keys() - first_dict.keys()):
-                return (key, None, converted(second_dict.get(key)))
+                return (key, ADDED, converted(second_dict.get(key)))
             elif isinstance(first_dict.get(key), dict):
                 if isinstance(second_dict.get(key), dict):
                     new_first_dict = first_dict.get(key)
                     new_second_dict = second_dict.get(key)
-                    return (key, walk(new_first_dict, new_second_dict))
+                    return (key, NESTED, walk(new_first_dict, new_second_dict))
             return (
                 key,
+                KEPT,
                 converted(first_dict.get(key)),
                 converted(second_dict.get(key)),
             )
