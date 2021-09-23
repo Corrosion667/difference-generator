@@ -1,7 +1,17 @@
 """Classic json: list of lists with [key, value_file1, value_file2]."""
+
 import json
 
+
 def sort(diff):
+    """Sort keys in diff.
+
+    Args:
+        diff: generated difference between two files.
+
+    Returns:
+        Sorted diff.
+    """
     diff.sort()
     for each in diff:
         if isinstance(each[1], list):
@@ -20,5 +30,4 @@ def jsoned(diff):
     Returns:
         Difference in classic json format.
     """
-    
     return json.dumps(sort(diff))
