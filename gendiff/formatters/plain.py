@@ -37,12 +37,12 @@ def plained(diff):
     def walk(sequence, difference, level):
         sequence = sorted(sequence)
         for each in sequence:
-            if isinstance(each[1], tuple):
+            if isinstance(each[1], list):
                 level = level + '{0}.'.format(each[0])
                 check_len = len('{0}.'.format(each[0]))
                 difference += '{0}'.format(walk(each[1], '', level))
                 level = level[:-check_len]
-            elif isinstance(each[2], tuple):
+            elif isinstance(each[2], list):
                 level = level + '{0}.'.format(each[0])
                 check_len = len('{0}.'.format(each[0]))
                 difference += '{0}'.format(walk(each[2], '', level))
