@@ -1,9 +1,11 @@
 """Thesis-like format with satements about adding, updating and removal."""
 
+from gendiff.gendiff_engine import ADDED, NESTED, REMOVED, KEPT
+
 bools = ['true', 'false', 'null']
-REMOVED = "Property \'{0}{1}\' was removed\n"
-ADDED = "Property \'{0}{1}\' was added with value: {2}\n"
-UPDATED = "Property \'{0}{1}\' was updated. From {2} to {3}\n"
+REMOVAL = "Property \'{0}{1}\' was removed\n"
+ADDING = "Property \'{0}{1}\' was added with value: {2}\n"
+UPDATE = "Property \'{0}{1}\' was updated. From {2} to {3}\n"
 
 
 def formatted(element):
@@ -36,26 +38,25 @@ def plained(diff):
 
     def walk(sequence, difference, level):
         sequence = sorted(sequence)
-        for each in sequence:
-            if isinstance(each[1], list):
-                level = level + '{0}.'.format(each[0])
-                check_len = len('{0}.'.format(each[0]))
-                difference += '{0}'.format(walk(each[1], '', level))
+        for node in sequence:
+            key, status, value = node
+            if status == NESTED:
+                level = level + '{0}.'.format(key)
+                check_len = len('{0}.'.format(key))
+                difference += '{0}'.format(walk(value, '', level))
                 level = level[:-check_len]
-            elif isinstance(each[2], list):
-                level = level + '{0}.'.format(each[0])
-                check_len = len('{0}.'.format(each[0]))
-                difference += '{0}'.format(walk(each[2], '', level))
-                level = level[:-check_len]
-            elif each[1] == each[2]:
+            elif status == REMOVED:
+                difference += REMOVAL.format(level, key)
+            elif status == ADDED:
+                difference += ADDING.format(level, key, formatted(value))
+            elif status == KEPT:
                 continue
-            elif each[2] is None:
-                difference += REMOVED.format(level, each[0])
-            elif each[1] is None:
-                difference += ADDED.format(level, each[0], formatted(each[2]))
             else:
-                difference += UPDATED.format(
-                    level, each[0], formatted(each[1]), formatted(each[2]),
+                old, new = value
+                if old == new:
+                    continue
+                difference += UPDATE.format(
+                    level, key, formatted(old), formatted(new),
                 )
         return difference
     return walk(diff, '', '')[:-1]
