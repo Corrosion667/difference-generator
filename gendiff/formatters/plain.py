@@ -1,8 +1,9 @@
 """Thesis-like format with satements about adding, updating and removal."""
 
-from gendiff.gendiff_engine import ADDED, NESTED, REMOVED, KEPT
+from gendiff.formatters.format_utilities import converted, sort
+from gendiff.gendiff_engine import ADDED, KEPT, NESTED, REMOVED
 
-bools = ['true', 'false', 'null']
+bools = [True, False, None]
 REMOVAL = "Property \'{0}{1}\' was removed\n"
 ADDING = "Property \'{0}{1}\' was added with value: {2}\n"
 UPDATE = "Property \'{0}{1}\' was updated. From {2} to {3}\n"
@@ -19,9 +20,9 @@ def formatted(element):
     """
     if isinstance(element, dict):
         return '[complex value]'
-    elif isinstance(element, int):
-        return element
     elif element in bools:
+        return converted(element)
+    elif isinstance(element, int):
         return element
     return "\'{0}\'".format(element)
 
@@ -37,7 +38,6 @@ def plained(diff):
     """
 
     def walk(sequence, difference, level):
-        sequence.sort()
         for node in sequence:
             key, status, value = node
             if status == NESTED:
@@ -59,4 +59,4 @@ def plained(diff):
                     level, key, formatted(old), formatted(new),
                 )
         return difference
-    return walk(diff, '', '')[:-1]
+    return walk(sort(diff), '', '')[:-1]
