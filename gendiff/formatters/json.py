@@ -2,6 +2,8 @@
 
 import json
 
+from gendiff.gendiff_engine import NESTED
+
 
 def sort(diff):
     """Sort keys in diff.
@@ -13,11 +15,10 @@ def sort(diff):
         Sorted diff.
     """
     diff.sort()
-    for each in diff:
-        if isinstance(each[1], list):
-            sort(each[1])
-        elif isinstance(each[2], list):
-            sort(each[2])
+    for node in diff:
+        key, status, value = node
+        if status == NESTED:
+            sort(value)
     return diff
 
 
