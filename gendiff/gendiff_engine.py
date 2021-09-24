@@ -1,4 +1,5 @@
 """The engine to run diff generator."""
+
 NESTED = 'nested'
 ADDED = 'added'
 KEPT = 'kept'
@@ -38,18 +39,18 @@ def generate_diff(file_path1, file_path2, formatter='stylish'):
             first_value = first_dict.get(key)
             second_value = second_dict.get(key)
             if key in (first_dict.keys() - second_dict.keys()):
-                return (key, REMOVED, converted(first_value))
+                return (key, REMOVED, first_value)
             elif key in (second_dict.keys() - first_dict.keys()):
-                return (key, ADDED, converted(second_value))
+                return (key, ADDED, second_value)
             elif isinstance(first_value, dict):
                 if isinstance(second_value, dict):
                     return (key, NESTED, walk(first_value, second_value))
             elif first_value == second_value:
-                return (key, KEPT, converted(first_value))
+                return (key, KEPT, first_value)
             return (
                 key,
                 UPDATED,
-                (converted(first_value), converted(second_value)),
+                (first_value, second_value),
             )
         return list(map(inner, keys))
     return formatter_map[formatter](walk(first_dict, second_dict))
