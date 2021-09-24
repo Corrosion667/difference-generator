@@ -1,10 +1,8 @@
-"""Classic json: list of lists with [key, value_file1, value_file2]."""
+"""Classic json: list of lists with [key, status, value(s)]."""
 
 import json
 
-from gendiff.gendiff_engine import NESTED
-
-
+from gendiff.formatters.format_utilities import sort
 
 
 def jsoned(diff):
