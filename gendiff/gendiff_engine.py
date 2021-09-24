@@ -6,7 +6,7 @@ KEPT = 'kept'
 UPDATED = 'updated'
 REMOVED = 'removed'
 
-from gendiff.formatters.json import jsoned 
+from gendiff.formatters.json import jsoned
 from gendiff.formatters.plain import plained
 from gendiff.formatters.stylish import stylished
 from gendiff.parsing import parse_file
