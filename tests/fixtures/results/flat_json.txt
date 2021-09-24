@@ -1,1 +1,1 @@
-[["accept", "kept", "true"], ["boolean", "updated", ["true", "false"]], ["check", "removed", "null"], ["follow", "removed", "false"], ["host", "kept", "hexlet.io"], ["proxy", "removed", "123.234.53.22"], ["timeout", "updated", [50, 20]], ["verbose", "added", "true"]]
+[["accept", "kept", true], ["boolean", "updated", [true, false]], ["check", "removed", null], ["follow", "removed", false], ["host", "kept", "hexlet.io"], ["proxy", "removed", "123.234.53.22"], ["timeout", "updated", [50, 20]], ["verbose", "added", true]]
