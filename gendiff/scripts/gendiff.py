@@ -21,7 +21,7 @@ def main():
          also usable: plain
          (thesis-like format with satements about adding, updating and removal);
          also usable: json
-         (classic json: list of lists with [key, value_file1, value_file2])
+         (classic json: list of lists with [key, status, value(s)])
          """,
     )
     args = parser.parse_args()
