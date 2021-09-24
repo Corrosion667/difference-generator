@@ -6,7 +6,7 @@ KEPT = 'kept'
 UPDATED = 'updated'
 REMOVED = 'removed'
 
-from gendiff.formatters.json import jsoned
+from gendiff.formatters.json import jsoned 
 from gendiff.formatters.plain import plained
 from gendiff.formatters.stylish import stylished
 from gendiff.parsing import parse_file
@@ -47,10 +47,6 @@ def generate_diff(file_path1, file_path2, formatter='stylish'):
                     return (key, NESTED, walk(first_value, second_value))
             elif first_value == second_value:
                 return (key, KEPT, first_value)
-            return (
-                key,
-                UPDATED,
-                (first_value, second_value),
-            )
+            return (key, UPDATED, (first_value, second_value))
         return list(map(inner, keys))
     return formatter_map[formatter](walk(first_dict, second_dict))
