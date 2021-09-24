@@ -17,3 +17,20 @@ def converted(python_value):
     elif python_value is None:
         return 'null'
     return python_value
+
+
+def sort(diff):
+    """Sort keys in diff.
+
+    Args:
+        diff: generated difference between two files.
+
+    Returns:
+        Sorted diff.
+    """
+    diff.sort()
+    for node in diff:
+        key, status, value = node
+        if status == NESTED:
+            sort(value)
+    return diff

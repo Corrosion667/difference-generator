@@ -5,21 +5,6 @@ import json
 from gendiff.gendiff_engine import NESTED
 
 
-def sort(diff):
-    """Sort keys in diff.
-
-    Args:
-        diff: generated difference between two files.
-
-    Returns:
-        Sorted diff.
-    """
-    diff.sort()
-    for node in diff:
-        key, status, value = node
-        if status == NESTED:
-            sort(value)
-    return diff
 
 
 def jsoned(diff):
