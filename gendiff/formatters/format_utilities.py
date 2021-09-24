@@ -1,5 +1,7 @@
 """The module contains common utilities for formatters."""
 
+from gendiff.gendiff_engine import NESTED
+
 
 def converted(python_value):
     """Convert Python's bools and None to required format.
