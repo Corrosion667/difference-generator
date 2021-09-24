@@ -37,7 +37,7 @@ def plained(diff):
     """
 
     def walk(sequence, difference, level):
-        sequence = sorted(sequence)
+        sequence.sort()
         for node in sequence:
             key, status, value = node
             if status == NESTED:
