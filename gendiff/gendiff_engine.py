@@ -1,14 +1,14 @@
 """The engine to run diff generator."""
+NESTED = 'nested'
+ADDED = 'added'
+KEPT = 'kept'
+UPDATED = 'updated'
+REMOVED = 'removed'
 
 from gendiff.formatters.json import jsoned
 from gendiff.formatters.plain import plained
 from gendiff.formatters.stylish import stylished
 from gendiff.parsing import parse_file
-
-NESTED = 'nested'
-ADDED = 'added'
-KEPT = 'kept'
-REMOVED = 'removed'
 
 formatter_map = {
     'stylish': stylished,
@@ -53,20 +53,21 @@ def generate_diff(file_path1, file_path2, formatter='stylish'):
         keys = (first_dict.keys() | second_dict.keys())
 
         def inner(key):
+            first_value = first_dict.get(key)
+            second_value = second_dict.get(key)
             if key in (first_dict.keys() - second_dict.keys()):
-                return (key, REMOVED, converted(first_dict.get(key)))
+                return (key, REMOVED, converted(first_value))
             elif key in (second_dict.keys() - first_dict.keys()):
-                return (key, ADDED, converted(second_dict.get(key)))
-            elif isinstance(first_dict.get(key), dict):
-                if isinstance(second_dict.get(key), dict):
-                    new_first_dict = first_dict.get(key)
-                    new_second_dict = second_dict.get(key)
-                    return (key, NESTED, walk(new_first_dict, new_second_dict))
+                return (key, ADDED, converted(second_value))
+            elif isinstance(first_value, dict):
+                if isinstance(second_value, dict):
+                    return (key, NESTED, walk(first_value, second_value))
+            elif first_value == second_value:
+                return (key, KEPT, converted(first_value))
             return (
                 key,
-                KEPT,
-                converted(first_dict.get(key)),
-                converted(second_dict.get(key)),
+                UPDATED,
+                (converted(first_value), converted(second_value)),
             )
         return list(map(inner, keys))
     return formatter_map[formatter](walk(first_dict, second_dict))
