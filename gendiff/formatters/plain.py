@@ -1,7 +1,7 @@
 """Thesis-like format with satements about adding, updating and removal."""
 
+from gendiff.formatters import ADDED, KEPT, NESTED, REMOVED
 from gendiff.formatters.format_utilities import converted, sort
-from gendiff.gendiff_engine import ADDED, KEPT, NESTED, REMOVED
 
 bools = [True, False, None]
 REMOVAL = "Property \'{0}{1}\' was removed\n"

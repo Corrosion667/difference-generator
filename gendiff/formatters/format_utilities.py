@@ -1,6 +1,6 @@
 """The module contains common utilities for formatters."""
 
-from gendiff.gendiff_engine import NESTED
+from gendiff.formatters import NESTED
 
 
 def converted(python_value):
