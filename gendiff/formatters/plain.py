@@ -41,22 +41,22 @@ def plained(diff):
         for node in sequence:
             key, status, value = node
             if status == NESTED:
-                level = level + '{0}.'.format(key)
+                level = '{0}{1}.'.format(level, key)
                 check_len = len('{0}.'.format(key))
-                difference += '{0}'.format(walk(value, '', level))
+                difference.append('{0}'.format(walk(value, [], level)))
                 level = level[:-check_len]
             elif status == REMOVED:
-                difference += REMOVAL.format(level, key)
+                difference.append(REMOVAL.format(level, key))
             elif status == ADDED:
-                difference += ADDING.format(level, key, formatted(value))
+                difference.append(ADDING.format(level, key, formatted(value)))
             elif status == KEPT:
                 continue
             else:
                 old, new = value
                 if old == new:
                     continue
-                difference += UPDATE.format(
+                difference.append(UPDATE.format(
                     level, key, formatted(old), formatted(new),
-                )
-        return difference
-    return walk(sort(diff), '', '')[:-1]
+                ))
+        return ''.join(difference)
+    return walk(sort(diff), [], '')[:-1]
