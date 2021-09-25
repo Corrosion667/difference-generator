@@ -34,13 +34,15 @@ def generate_diff(file_path1, file_path2, formatter='stylish'):
 
     def walk(first_dict, second_dict):
         keys = (first_dict.keys() | second_dict.keys())
+        unique_keys1 = (first_dict.keys() - second_dict.keys())
+        unique_keys2 = (second_dict.keys() - first_dict.keys())
 
         def inner(key):
             first_value = first_dict.get(key)
             second_value = second_dict.get(key)
-            if key in (first_dict.keys() - second_dict.keys()):
+            if key in unique_keys1:
                 return (key, REMOVED, first_value)
-            elif key in (second_dict.keys() - first_dict.keys()):
+            elif key in unique_keys2:
                 return (key, ADDED, second_value)
             elif isinstance(first_value, dict):
                 if isinstance(second_value, dict):
