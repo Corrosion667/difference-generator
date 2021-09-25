@@ -1,11 +1,14 @@
 """Json-like format with - for deleted elements and + for added."""
 
+from gendiff.formatters.format_utilities import converted, sort
+from gendiff.gendiff_engine import ADDED, KEPT, NESTED, REMOVED
+
 LEVEL_TAB = '    '
 DICT_TEMPLATE = '{0}{1}: {2}\n'
 RECURSION_TEMPLATE = '{0}    {1}: '
-KEPT = '{0}    {1}: {2}\n'
-REMOVED = '{0}  - {1}: {2}\n'
-ADDED = '{0}  + {1}: {2}\n'
+KEEPING = '{0}    {1}: {2}\n'
+REMOVAL = '{0}  - {1}: {2}\n'
+ADDING = '{0}  + {1}: {2}\n'
 
 
 def format_dict(element, level):
@@ -37,7 +40,7 @@ def format_dict(element, level):
         return difference + '{0}}}'.format((LEVEL_TAB * level))
     if isinstance(element, dict):
         return walk(element, '{\n', level)
-    return element
+    return converted(element)
 
 
 def stylished(diff):
@@ -50,44 +53,36 @@ def stylished(diff):
         Difference formated into string with necessary syntax.
     """
     def walk(sequence, difference, level):
-        sequence = sorted(sequence)
-        for each in sequence:
-            if isinstance(each[1], list):
+        for node in sequence:
+            key, status, value = node
+            if status == NESTED:
                 difference += RECURSION_TEMPLATE.format(
-                    (LEVEL_TAB * level), each[0],
+                    (LEVEL_TAB * level), key,
                 )
                 level += 1
                 difference += '{0}\n'.format(
-                    walk(each[1], '{\n', level),
+                    walk(value, '{\n', level),
                 )
                 level -= 1
-            elif isinstance(each[2], list):
-                difference += RECURSION_TEMPLATE.format(
-                    (LEVEL_TAB * level), each[0],
+            elif status == KEPT:
+                difference += KEEPING.format(
+                    (LEVEL_TAB * level), key, format_dict(value, level),
                 )
-                level += 1
-                difference += '{0}\n'.format(
-                    walk(each[2], '{\n', level),
+            elif status is REMOVED:
+                difference += REMOVAL.format(
+                    (LEVEL_TAB * level), key, format_dict(value, level),
                 )
-                level -= 1
-            elif each[1] == each[2]:
-                difference += KEPT.format(
-                    (LEVEL_TAB * level), each[0], format_dict(each[1], level),
-                )
-            elif each[2] is None:
-                difference += REMOVED.format(
-                    (LEVEL_TAB * level), each[0], format_dict(each[1], level),
-                )
-            elif each[1] is None:
-                difference += ADDED.format(
-                    (LEVEL_TAB * level), each[0], format_dict(each[2], level),
+            elif status is ADDED:
+                difference += ADDING.format(
+                    (LEVEL_TAB * level), key, format_dict(value, level),
                 )
             else:
-                difference += REMOVED.format(
-                    (LEVEL_TAB * level), each[0], format_dict(each[1], level),
+                old, new = value
+                difference += REMOVAL.format(
+                    (LEVEL_TAB * level), key, format_dict(old, level),
                 )
-                difference += ADDED.format(
-                    (LEVEL_TAB * level), each[0], format_dict(each[2], level),
+                difference += ADDING.format(
+                    (LEVEL_TAB * level), key, format_dict(new, level),
                 )
         return difference + '{0}}}'.format((LEVEL_TAB * level))
-    return walk(diff, '{\n', 0)
+    return walk(sort(diff), '{\n', 0)
