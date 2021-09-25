@@ -1,5 +1,5 @@
 """This is a module to test gendiff program with plain formatter."""
-from gendiff.gendiff_engine import generate_diff
+from gendiff.gendiff_engine import generate_diff, PLAIN
 
 
 def test_generate_diff_flat_json_plain(get_flat_result_plain):
@@ -11,7 +11,7 @@ def test_generate_diff_flat_json_plain(get_flat_result_plain):
     assert generate_diff(
         'tests/fixtures/test_files/flat_test_file1.json',
         'tests/fixtures/test_files/flat_test_file2.json',
-        'plain',
+        PLAIN,
     ) == get_flat_result_plain
 
 
@@ -24,7 +24,7 @@ def test_generate_diff_nested_json_plain(get_nested_result_plain):
     assert generate_diff(
         'tests/fixtures/test_files/nested_test_file1.json',
         'tests/fixtures/test_files/nested_test_file2.json',
-        'plain',
+        PLAIN,
     ) == get_nested_result_plain
 
 
@@ -37,7 +37,7 @@ def test_generate_diff_flat_yml_plain(get_flat_result_plain):
     assert generate_diff(
         'tests/fixtures/test_files/flat_test_file1.yml',
         'tests/fixtures/test_files/flat_test_file2.yaml',
-        'plain',
+        PLAIN,
     ) == get_flat_result_plain
 
 
@@ -50,5 +50,5 @@ def test_generate_diff_nested_yml_plain(get_nested_result_plain):
     assert generate_diff(
         'tests/fixtures/test_files/nested_test_file1.yml',
         'tests/fixtures/test_files/nested_test_file2.yaml',
-        'plain',
+        PLAIN,
     ) == get_nested_result_plain

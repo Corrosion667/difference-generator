@@ -11,14 +11,18 @@ from gendiff.formatters.plain import plained
 from gendiff.formatters.stylish import stylished
 from gendiff.parsing import parse_file
 
+STYLISH = 'stylish'
+PLAIN = 'plain'
+JSON = 'json'
+
 formatter_map = {
-    'stylish': stylished,
-    'plain': plained,
-    'json': jsoned,
+    STYLISH: stylished,
+    PLAIN: plained,
+    JSON: jsoned,
 }
 
 
-def generate_diff(file_path1, file_path2, formatter='stylish'):
+def generate_diff(file_path1, file_path2, formatter=STYLISH):
     """Get differences between two files.
 
     Args:

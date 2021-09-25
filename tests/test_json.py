@@ -1,5 +1,5 @@
 """This is a module to test gendiff program with json formatter."""
-from gendiff.gendiff_engine import generate_diff
+from gendiff.gendiff_engine import JSON, generate_diff
 
 
 def test_generate_diff_flat_json_json(get_flat_result_json):
@@ -11,7 +11,7 @@ def test_generate_diff_flat_json_json(get_flat_result_json):
     assert generate_diff(
         'tests/fixtures/test_files/flat_test_file1.json',
         'tests/fixtures/test_files/flat_test_file2.json',
-        'json',
+        JSON,
     ) == get_flat_result_json
 
 
@@ -24,7 +24,7 @@ def test_generate_diff_nested_json_json(get_nested_result_json):
     assert generate_diff(
         'tests/fixtures/test_files/nested_test_file1.json',
         'tests/fixtures/test_files/nested_test_file2.json',
-        'json',
+        JSON,
     ) == get_nested_result_json
 
 
@@ -37,7 +37,7 @@ def test_generate_diff_flat_yml_json(get_flat_result_json):
     assert generate_diff(
         'tests/fixtures/test_files/flat_test_file1.yml',
         'tests/fixtures/test_files/flat_test_file2.yaml',
-        'json',
+        JSON,
     ) == get_flat_result_json
 
 
@@ -50,5 +50,5 @@ def test_generate_diff_nested_yml_json(get_nested_result_json):
     assert generate_diff(
         'tests/fixtures/test_files/nested_test_file1.yml',
         'tests/fixtures/test_files/nested_test_file2.yaml',
-        'json',
+        JSON,
     ) == get_nested_result_json

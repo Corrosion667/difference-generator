@@ -2,7 +2,7 @@
 """This program determines the differences between two files."""
 import argparse
 
-from gendiff.gendiff_engine import generate_diff
+from gendiff.gendiff_engine import JSON, PLAIN, STYLISH, generate_diff
 
 
 def main():
@@ -14,8 +14,8 @@ def main():
         '-f',
         '--format',
         type=str,
-        choices=['stylish', 'plain', 'json'],
-        default='stylish',
+        choices=[STYLISH, PLAIN, JSON],
+        default=STYLISH,
         help="""set format of output; default: stylish
          (json-like format with - for deleted elements and + for added);
          also usable: plain
