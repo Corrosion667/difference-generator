@@ -1,16 +1,15 @@
 """The engine to run diff generator."""
 
-NESTED = 'nested'
-ADDED = 'added'
-KEPT = 'kept'
-UPDATED = 'updated'
-REMOVED = 'removed'
-
 from gendiff.formatters.json import jsoned
 from gendiff.formatters.plain import plained
 from gendiff.formatters.stylish import stylished
 from gendiff.parsing import parse_file
 
+NESTED = 'nested'
+ADDED = 'added'
+KEPT = 'kept'
+UPDATED = 'updated'
+REMOVED = 'removed'
 STYLISH = 'stylish'
 PLAIN = 'plain'
 JSON = 'json'
@@ -22,7 +21,7 @@ formatter_map = {
 }
 
 
-def generate_diff(file_path1, file_path2, formatter=STYLISH):
+def generate_diff(file_path1, file_path2, formatter=STYLISH):  # noqa: WPS212, WPS210, WPS231, E501, C901
     """Get differences between two files.
 
     Args:
@@ -36,12 +35,12 @@ def generate_diff(file_path1, file_path2, formatter=STYLISH):
     first_dict = parse_file(file_path1)
     second_dict = parse_file(file_path2)
 
-    def walk(first_dict, second_dict):
+    def walk(first_dict, second_dict):  # noqa: WPS212, WPS231, WPS430, WPS442
         keys = (first_dict.keys() | second_dict.keys())
         unique_keys1 = (first_dict.keys() - second_dict.keys())
         unique_keys2 = (second_dict.keys() - first_dict.keys())
 
-        def inner(key):
+        def inner(key):  # noqa: WPS231, WPS430
             first_value = first_dict.get(key)
             second_value = second_dict.get(key)
             if key in unique_keys1:

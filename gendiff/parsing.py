@@ -24,9 +24,9 @@ def parse_file(file_path):
     if file_extension == '.json':
         with open(file_path) as parsed_file:
             parsed_file = json.load(parsed_file)
-        return parsed_file
+        return parsed_file  # noqa: WPS441
     elif file_extension in YAML_EXTENSIONS:
-        with open(file_path) as parsed_file:
+        with open(file_path) as parsed_file:  # noqa: WPS440
             parsed_file = yaml.safe_load(parsed_file)
-        return parsed_file
+        return parsed_file  # noqa: WPS441
     raise ValueError('Unsupported extension of file')

@@ -1,4 +1,4 @@
-"""It's a package with formatters which convert made diff to some CLI notions."""
+"""It's a package with formatters which convert diff to some CLI notions."""
 
 from gendiff.gendiff_engine import ADDED, KEPT, NESTED, REMOVED
 

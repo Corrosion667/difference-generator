@@ -32,7 +32,7 @@ def sort(diff):
     """
     diff.sort()
     for node in diff:
-        key, status, value = node
+        key, status, value = node  # noqa: WPS110
         if status == NESTED:
             sort(value)
     return diff
