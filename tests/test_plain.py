@@ -1,5 +1,5 @@
 """This is a module to test gendiff program with plain formatter."""
-from gendiff.gendiff_engine import generate_diff, PLAIN
+from gendiff.gendiff_engine import PLAIN, generate_diff
 
 
 def test_generate_diff_flat_json_plain(get_flat_result_plain):
