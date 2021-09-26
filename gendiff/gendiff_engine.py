@@ -1,15 +1,16 @@
 """The engine to run diff generator."""
 
-from gendiff.formatters.json import jsoned
-from gendiff.formatters.plain import plained
-from gendiff.formatters.stylish import stylished
-from gendiff.parsing import parse_file
-
 NESTED = 'nested'
 ADDED = 'added'
 KEPT = 'kept'
 UPDATED = 'updated'
 REMOVED = 'removed'
+
+from gendiff.formatters.json import jsoned  # noqa: E402
+from gendiff.formatters.plain import plained  # noqa: E402
+from gendiff.formatters.stylish import stylished  # noqa: E402
+from gendiff.parsing import parse_file  # noqa: E402
+
 STYLISH = 'stylish'
 PLAIN = 'plain'
 JSON = 'json'
