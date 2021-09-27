@@ -17,7 +17,7 @@ Gendiff currently works with **JSON** and **YML/YAML** files.
 
 ## Quickstart
 
-**Gendiff** at the moment are stored only at *github* so the quickest and the easiest way to install them is to use *pip* with URL of repository.
+**Gendiff** at the moment are stored only at *github* so the quickest and the easiest way to install it is to use *pip* with URL of repository.
 ```bash
 pip install git+https://github.com/Corrosion667/python-project-lvl2.git
 ```
@@ -43,7 +43,7 @@ As was said above, there are three formatters which gendiff currently supports:
 |-------------------|---------------------------------------------------------------------------------------|
 |     *stylish*     | default one; json-like format with '-' for deleted elements and '+' for added         |       
 |      *plain*      | thesis-like format with satements about adding, updating and removal of elements      |      
-|      *json*       | classic json; list of lists with following structure: [key, value_file1, value_file2] |
+|      *json*       | classic json; list of lists with following structure: [key, status, value(s)]         |
 
 The work of different formatters will be clearly demonstrated below using asciinema service.
 
