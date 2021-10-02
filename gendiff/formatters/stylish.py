@@ -21,7 +21,6 @@ def format_dict(element, level):
     Returns:
         Formatted dict as a string.
     """
-    level += 1
 
     def walk(element, difference, level):  # noqa: WPS430, WPS442
         for key in sorted(element.keys()):
@@ -40,7 +39,7 @@ def format_dict(element, level):
         difference.append('{0}}}'.format((LEVEL_TAB * level)))  # noqa: WPS204
         return ''.join(difference)
     if isinstance(element, dict):
-        return walk(element, ['{\n'], level)
+        return walk(element, ['{\n'], (level + 1))
     return converted(element)
 
 
