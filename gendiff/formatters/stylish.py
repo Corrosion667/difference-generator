@@ -26,21 +26,17 @@ def format_dict(element, level):
     def walk(element, difference, level):  # noqa: WPS430, WPS442
         for key in sorted(element.keys()):
             if isinstance(element[key], dict):
-                level += 1
                 difference.append(
                     DICT_TEMPLATE.format(
                         (LEVEL_TAB * level),  # noqa: WPS204
                         key,
-                        walk(element[key], ['{\n'], level),
+                        walk(element[key], ['{\n'], level + 1),
                     ),
                 )
-                level -= 1
             else:
-                level += 1
                 difference.append(DICT_TEMPLATE.format(
-                    (LEVEL_TAB * level), key, element[key],
+                    (LEVEL_TAB * (level + 1)), key, element[key],
                 ))
-                level -= 1
         difference.append('{0}}}'.format((LEVEL_TAB * level)))
         return ''.join(difference)
     if isinstance(element, dict):
@@ -64,11 +60,9 @@ def stylished(diff):  # noqa: WPS210, WPS231, C901
                 difference.append(RECURSION_TEMPLATE.format(
                     (LEVEL_TAB * level), key,  # noqa: WPS204
                 ))
-                level += 1
                 difference.append('{0}\n'.format(
-                    walk(value, ['{\n'], level),
+                    walk(value, ['{\n'], level + 1),
                 ))
-                level -= 1
             elif status == KEPT:
                 difference.append(KEEPING.format(
                     (LEVEL_TAB * level), key, format_dict(value, level),
