@@ -28,16 +28,16 @@ def format_dict(element, level):
             if isinstance(element[key], dict):
                 difference.append(
                     DICT_TEMPLATE.format(
-                        (LEVEL_TAB * level),  # noqa: WPS204
+                        (LEVEL_TAB * (level + 1)),  # noqa: WPS204
                         key,
-                        walk(element[key], ['{\n'], level + 1),
+                        walk(element[key], ['{\n'], (level + 1)),
                     ),
                 )
             else:
                 difference.append(DICT_TEMPLATE.format(
                     (LEVEL_TAB * (level + 1)), key, element[key],
                 ))
-        difference.append('{0}}}'.format((LEVEL_TAB * level)))
+        difference.append('{0}}}'.format((LEVEL_TAB * level)))  # noqa: WPS204
         return ''.join(difference)
     if isinstance(element, dict):
         return walk(element, ['{\n'], level)
