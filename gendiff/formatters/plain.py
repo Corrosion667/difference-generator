@@ -1,6 +1,6 @@
 """Thesis-like format with satements about adding, updating and removal."""
 
-from gendiff.formatters import ADDED, KEPT, NESTED, REMOVED
+from gendiff.diff import ADDED, KEPT, NESTED, REMOVED
 from gendiff.formatters.format_utilities import converted, sort
 
 bools = [True, False, None]

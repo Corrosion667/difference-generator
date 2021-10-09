@@ -1,6 +1,6 @@
 """Json-like format with - for deleted elements and + for added."""
 
-from gendiff.formatters import ADDED, KEPT, NESTED, REMOVED
+from gendiff.diff import ADDED, KEPT, NESTED, REMOVED
 from gendiff.formatters.format_utilities import converted, sort
 
 LEVEL_TAB = '    '
