@@ -2,7 +2,7 @@
 """This program determines the differences between two files."""
 import argparse
 
-from gendiff.gendiff_engine import JSON, PLAIN, STYLISH, generate_diff
+from gendiff.generate_diff import JSON, PLAIN, STYLISH, generate_diff
 
 
 def main():

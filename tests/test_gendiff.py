@@ -1,7 +1,7 @@
 """This is a module to test gendiff program using pytest parametrize."""
 
 import pytest
-from gendiff.gendiff_engine import JSON, PLAIN, STYLISH, generate_diff
+from gendiff.generate_diff import JSON, PLAIN, STYLISH, generate_diff
 
 
 def get_result(path):

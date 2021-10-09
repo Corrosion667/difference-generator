@@ -1,6 +1,6 @@
 """This is a module to test gendiff program for error raising."""
 import pytest
-from gendiff.gendiff_engine import generate_diff
+from gendiff.generate_diff import generate_diff
 
 
 def test_generate_diff_wrong_formats():

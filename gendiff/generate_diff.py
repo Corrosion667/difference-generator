@@ -1,15 +1,10 @@
 """The engine to run diff generator."""
 
-NESTED = 'nested'
-ADDED = 'added'
-KEPT = 'kept'
-UPDATED = 'updated'
-REMOVED = 'removed'
-
-from gendiff.formatters.json import jsoned  # noqa: E402
-from gendiff.formatters.plain import plained  # noqa: E402
-from gendiff.formatters.stylish import stylished  # noqa: E402
-from gendiff.parsing import parse_file  # noqa: E402
+from gendiff.diff import create_diff
+from gendiff.formatters.json import jsoned
+from gendiff.formatters.plain import plained
+from gendiff.formatters.stylish import stylished
+from gendiff.parsing import parse_file
 
 STYLISH = 'stylish'
 PLAIN = 'plain'
@@ -22,7 +17,7 @@ formatter_map = {
 }
 
 
-def generate_diff(file_path1, file_path2, formatter=STYLISH):  # noqa: WPS212, WPS210, WPS231, E501, C901
+def generate_diff(file_path1, file_path2, formatter=STYLISH):
     """Get differences between two files.
 
     Args:
@@ -35,24 +30,4 @@ def generate_diff(file_path1, file_path2, formatter=STYLISH):  # noqa: WPS212, W
     """
     first_dict = parse_file(file_path1)
     second_dict = parse_file(file_path2)
-
-    def walk(first_dict, second_dict):  # noqa: WPS212, WPS231, WPS430, WPS442
-        keys = (first_dict.keys() | second_dict.keys())
-        unique_keys1 = (first_dict.keys() - second_dict.keys())
-        unique_keys2 = (second_dict.keys() - first_dict.keys())
-
-        def inner(key):  # noqa: WPS231, WPS430
-            first_value = first_dict.get(key)
-            second_value = second_dict.get(key)
-            if key in unique_keys1:
-                return (key, REMOVED, first_value)
-            elif key in unique_keys2:
-                return (key, ADDED, second_value)
-            elif isinstance(first_value, dict):
-                if isinstance(second_value, dict):
-                    return (key, NESTED, walk(first_value, second_value))
-            elif first_value == second_value:
-                return (key, KEPT, first_value)
-            return (key, UPDATED, (first_value, second_value))
-        return list(map(inner, keys))
-    return formatter_map[formatter](walk(first_dict, second_dict))
+    return formatter_map[formatter](create_diff(first_dict, second_dict))
