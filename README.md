@@ -17,7 +17,7 @@ Gendiff currently works with **JSON** and **YML/YAML** files.
 
 ## Quickstart
 
-**Gendiff** at the moment are stored only at *github* so the quickest and the easiest way to install it is to use *pip* with URL of repository.
+**Gendiff** at the moment is stored only at *github* so the quickest and the easiest way to install it is to use *pip* with URL of repository.
 ```bash
 pip install git+https://github.com/Corrosion667/python-project-lvl2.git
 ```
