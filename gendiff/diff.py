@@ -7,7 +7,7 @@ UPDATED = 'updated'
 REMOVED = 'removed'
 
 
-def create_diff(first_dict, second_dict):  # noqa: WPS212, WPS231, C901
+def create_diff(first_dict, second_dict):
     """Get differences between two dicts in special data structure (diff).
 
     Args:
@@ -21,7 +21,7 @@ def create_diff(first_dict, second_dict):  # noqa: WPS212, WPS231, C901
     unique_keys1 = (first_dict.keys() - second_dict.keys())
     unique_keys2 = (second_dict.keys() - first_dict.keys())
 
-    def walk(key):  # noqa: WPS430, WPS231
+    def walk(key):
         first_value = first_dict.get(key)
         second_value = second_dict.get(key)
         if key in unique_keys1:

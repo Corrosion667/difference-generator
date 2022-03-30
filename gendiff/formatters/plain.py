@@ -27,7 +27,7 @@ def formatted(element):
     return "\'{0}\'".format(element)
 
 
-def plained(diff):  # noqa: WPS210, WPS231, C901
+def plained(diff):
     """Convert diff to a CLI notion.
 
     Args:
@@ -37,9 +37,9 @@ def plained(diff):  # noqa: WPS210, WPS231, C901
         Difference formated into string with necessary syntax.
     """
 
-    def walk(sequence, difference, level):  # noqa: WPS210, WPS231, WPS430
+    def walk(sequence, difference, level):
         for node in sequence:
-            key, status, value = node  # noqa: WPS110
+            key, status, value = node
             if status == NESTED:
                 level = '{0}{1}.'.format(level, key)
                 check_len = len('{0}.'.format(key))

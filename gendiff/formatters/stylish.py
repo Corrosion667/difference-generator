@@ -22,12 +22,12 @@ def format_dict(element, level):
         Formatted dict as a string.
     """
 
-    def walk(element, difference, level):  # noqa: WPS430, WPS442
+    def walk(element, difference, level):
         for key in sorted(element.keys()):
             if isinstance(element[key], dict):
                 difference.append(
                     DICT_TEMPLATE.format(
-                        (LEVEL_TAB * (level + 1)),  # noqa: WPS204
+                        (LEVEL_TAB * (level + 1)),
                         key,
                         walk(element[key], ['{\n'], (level + 1)),
                     ),
@@ -36,14 +36,14 @@ def format_dict(element, level):
                 difference.append(DICT_TEMPLATE.format(
                     (LEVEL_TAB * (level + 1)), key, element[key],
                 ))
-        difference.append('{0}}}'.format((LEVEL_TAB * level)))  # noqa: WPS204
+        difference.append('{0}}}'.format((LEVEL_TAB * level)))
         return ''.join(difference)
     if isinstance(element, dict):
         return walk(element, ['{\n'], (level + 1))
     return converted(element)
 
 
-def stylished(diff):  # noqa: WPS210, WPS231, C901
+def stylished(diff):
     """Convert diff to a CLI notion.
 
     Args:
@@ -52,12 +52,12 @@ def stylished(diff):  # noqa: WPS210, WPS231, C901
     Returns:
         Difference formated into string with necessary syntax.
     """
-    def walk(sequence, difference, level):  # noqa: WPS231, WPS210, WPS430
+    def walk(sequence, difference, level):
         for node in sequence:
-            key, status, value = node  # noqa: WPS110
+            key, status, value = node
             if status == NESTED:
                 difference.append(RECURSION_TEMPLATE.format(
-                    (LEVEL_TAB * level), key,  # noqa: WPS204
+                    (LEVEL_TAB * level), key,
                 ))
                 difference.append('{0}\n'.format(
                     walk(value, ['{\n'], level + 1),
