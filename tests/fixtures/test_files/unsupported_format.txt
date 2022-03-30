@@ -1,1 +1,1 @@
-Hello, this file can't be written with difference generator.
+Hello, this file can't be parsed with difference generator.
