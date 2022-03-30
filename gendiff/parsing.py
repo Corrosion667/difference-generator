@@ -22,11 +22,9 @@ def parse_file(file_path):
     """
     file_extension = os.path.splitext(file_path)[-1].lower()
     if file_extension == '.json':
-        with open(file_path) as parsed_file:
-            parsed_file = json.load(parsed_file)
-        return parsed_file  # noqa: WPS441
+        with open(file_path) as parsed_json_file:
+            return json.load(parsed_json_file)
     elif file_extension in YAML_EXTENSIONS:
-        with open(file_path) as parsed_file:  # noqa: WPS440
-            parsed_file = yaml.safe_load(parsed_file)
-        return parsed_file  # noqa: WPS441
+        with open(file_path) as parsed_yaml_file:
+            return yaml.safe_load(parsed_yaml_file)
     raise ValueError('Unsupported extension of file')
